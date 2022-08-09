@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>PeerShare</title>
   <link rel="stylesheet" href="index.css">
   <script src="index.js"></script>
 </head>
+
 <body>
   <div class="wrapper row1">
     <div id="header">
@@ -20,15 +22,17 @@
     <div id="container">
       <div id="content">
 
-        <section><h1>Download</h1></section>
-        
         <section>
+          <h1>Download</h1>
+        </section>
+
+        <section id="fileList">
           <div id="content">
-              <h3>File Name</h3>
+            <h3>File Name</h3>
             <ul>
               <li>Server Name</li>
             </ul>
-            </div>
+          </div>
           <div id="right_column">
             <button>Download</button>
           </div>
@@ -42,7 +46,10 @@
         </section>
 
         <section>
-          <h2><button>upload</button></h2>
+          <h4>
+            <input id="filePath">
+            <button id="hostFile">Upload</button>
+          </h4>
         </section>
 
         <section>
@@ -58,6 +65,7 @@
       <div class="clear"></div>
     </div>
   </div>
-  
+
 </body>
+
 </html>
