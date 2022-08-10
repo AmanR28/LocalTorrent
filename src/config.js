@@ -1,5 +1,6 @@
 const config = {
-  port: 3000,
+  PORT: 3000,
+  BCAST_PORT: 6024
 }
 
 module.exports = config
