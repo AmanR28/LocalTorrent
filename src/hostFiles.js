@@ -33,7 +33,6 @@ const addFile = (fp, cb) => {
         cb("HOST_FILE_SUCCESS");
       }
     }
-    console.log("Hosted File List : ", list);
   });
 }
 

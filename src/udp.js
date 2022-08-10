@@ -16,7 +16,7 @@ const udp = () => {
     setInterval(() => {
       var msg = bencode.encode(hostFiles.get());
       udpServer.send(msg, 0, msg.length, config.BCAST_PORT, ip.broadcast);
-    }, 1000);
+    }, config.INTERVAL_BCAST);
   });
 
   udpServer.on('listening', function () {
@@ -27,7 +27,7 @@ const udp = () => {
 
   udpServer.on('message', function (message, rinfo) {
     var result = bencode.decode(message, 'utf-8');
-    console.log("Result", result);
+    result.forEach(f => files.addFile(f))
   });
 }
 

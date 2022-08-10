@@ -1,6 +1,6 @@
+const config = require('./config');
 const files = require('./files');
 const hostFiles = require('./hostFiles');
-
 
 const connClient = (socket) => {
   console.log("Client Connected: " + socket.conn.remoteAddress);
@@ -16,7 +16,7 @@ const connClient = (socket) => {
     setTimeout(() => {
       socket.emit('fileList', files.get());
       emitFileList()
-    }, 1000); 
+    }, config.INTERVAL_FILE_LIST); 
   }());
 }
 
