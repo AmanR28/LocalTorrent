@@ -1,10 +1,11 @@
 const dgram = require('dgram');
+const bencode = require('bencode');
 const config = require('./config');
 const ip = require('./utils/ip');
+const hostFiles = require('./hostFiles');
+const files = require('./files');
 
 const udpServer = dgram.createSocket("udp4");
-
-let rand = "";
 
 console.log('IP : ' + ip.address)
 console.log('BCAST : ' + ip.broadcast)
@@ -13,9 +14,8 @@ const udp = () => {
   udpServer.bind(config.BCAST_PORT, () => {
     udpServer.setBroadcast(true);
     setInterval(() => {
-      rand = Math.random().toString();
-      var message = Buffer.from(rand);
-      udpServer.send(message, 0, message.length, config.BCAST_PORT, ip.broadcast, () => console.log("Sent : " + message))
+      var msg = bencode.encode(hostFiles.get());
+      udpServer.send(msg, 0, msg.length, config.BCAST_PORT, ip.broadcast);
     }, 1000);
   });
 
@@ -26,8 +26,8 @@ const udp = () => {
   });
 
   udpServer.on('message', function (message, rinfo) {
-      if (message != rand) 
-        console.log('Message from: ' + rinfo.address + ':' + rinfo.port +' - ' + message);
+    var result = bencode.decode(message, 'utf-8');
+    console.log("Result", result);
   });
 }
 
