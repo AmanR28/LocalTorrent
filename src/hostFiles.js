@@ -2,10 +2,7 @@ const { stat } = require('fs');
 const path = require('path');
 const ip = require('./utils/ip');
 
-const list = [
-  {"id": 1,"name": "A", "server": ip.address},
-  {"id": 2,"name": "B", "server": ip.address}
-];
+const list = [];
 
 const addFile = (fp, cb) => {
   stat(fp, (err, data) => {
@@ -27,6 +24,7 @@ const addFile = (fp, cb) => {
         let file = {
           "id": id,
           "name": path.basename(fp),
+          "path": fp,
           "server": ip.address
         }
         list.push(file);

@@ -43,8 +43,7 @@ $(() => {
                 </ul>
                 </div>
                 <div id="right_column">
-                    <button class="fileDownload"
-                    id="${file.id}">Download</button>
+                    <a href="/d/${file.id}" class="fileDownload" target="_blank" download="${file.name}">Download</a>
                 </div>
             `
     })

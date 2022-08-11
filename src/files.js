@@ -2,9 +2,7 @@ const { stat } = require('fs');
 const ip = require('./utils/ip');
 var path = require('path');
 
-let list = [
-  {"id": "ad123","name": "adfsdf", "servers": ["123r5125"]},
-];
+let list = [];
 
 const addFile = (file) => {
   let exist = false;
@@ -21,6 +19,7 @@ const addFile = (file) => {
     list.push({
       "id": file.id,
       "name": file.name,
+      "path": file.path,
       "servers": [file.server]      
     })
 }
