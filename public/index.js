@@ -44,7 +44,7 @@ $(() => {
                 </ul>
                 </div>
                 <div id="right_column">
-                    <a href="/d/${file.id}" class="fileDownload" target="_blank" download="${file.name}">Download</a>
+                    <a href="//${file.servers[0]}:3000/d/${file.id}" class="fileDownload" target="_blank" download="${file.name}">Download</a>
                 </div>
             `
     })
