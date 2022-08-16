@@ -28,6 +28,16 @@ $(() => {
     }
   })
 
+// Set Download Path
+  $('#setDownloadPath').on('click', () => {
+      var downloadPath = $('#downloadPath').val();
+      console.log("Download Path : " + downloadPath);
+      socket.emit('setDownloadPath', downloadPath);
+  });
+  socket.on('checkDownloadPath', res => {
+    res ? alert('Download Path Set') : alert('Error Setting Download Path');
+  });
+  
   // Download File List
   socket.on('fileList', fileList => {
     var fileHtml = ""
@@ -43,10 +53,18 @@ $(() => {
                 </ul>
                 </div>
                 <div id="right_column">
-                    <a href="//${file.servers[0]}:3000/d/${file.id}" class="fileDownload" target="_blank" download="${file.name}">Download</a>
+                    <button class="fileDownload" id="${file.id}">Download</button>
                 </div>
             `
     })
     $('#fileList').html(fileHtml);
+    $('.fileDownload').on('click', (e) => {
+      console.log("Download File ID : " + JSON.stringify(e.target.id));
+      socket.emit('fileDownload', e.target.id);
+    })
   });
+
+  socket.on('fileDownloading', res => {
+    alert(res);
+  })
 });
