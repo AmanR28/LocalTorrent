@@ -66,7 +66,7 @@ $(() => {
   });
 
   socket.on('fileDownloading', res => {
-    alert(res ? "File Downloading" : "Error Downloading File" );
+    alert(res);
   })
 });
 },{"jquery":28,"socket.io-client":31}],2:[function(require,module,exports){

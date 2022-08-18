@@ -6,6 +6,8 @@ const download = require('./download');
 const connClient = (socket) => {
   console.log("Client Connected: " + socket.conn.remoteAddress);
 
+  hostFiles.start(socket);
+
   socket.on('hostFile', fp => {
     console.log('Host File Path ' + fp);
     hostFiles.addFile(fp, (res) => {
@@ -26,9 +28,11 @@ const connClient = (socket) => {
     })
   })
 
-  socket.on('fileDownload', id => download.file(id, (res) => {
-    socket.emit('fileDownloading', res);
-  }))  
+  socket.on('fileDownload', id => {
+    download.file(id, (res) => {
+      socket.emit('fileDownloading', res);
+    });
+  })  
 }
 
 module.exports = connClient;
